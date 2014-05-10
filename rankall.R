@@ -2,7 +2,6 @@ rankall <- function(outcome, num){
   my_data <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
   hospital_data <- my_data[,c(2,7,11,17,23)]
   hospital_data[hospital_data=="Not Available"]  <- NA
-  hospital_data <- hospital_data[complete.cases(hospital_data),]
   hospital_data[,3] <- as.numeric(hospital_data[,3])
   hospital_data[,4] <- as.numeric(hospital_data[,4])
   hospital_data[,5] <- as.numeric(hospital_data[,5])
@@ -17,21 +16,24 @@ rankall <- function(outcome, num){
       if (outcome == "heart attack"){
         z <- x[[i]]
         data.frame(z)
-        ordered <- z[order(z[,3],z[,1]),]
+        z <- z[complete.cases(z),]
+        ordered <- z[order(z[,3],z[,1],na.last=NA),]
         y <- ordered[,c(1,3)]
         a <- y[1,1]
       }
       if (outcome == "heart failure"){
         z <- x[[i]]
         data.frame(z)
-        ordered <- z[order(z[,4],z[,1]),]
+        z <- z[complete.cases(z),]
+        ordered <- z[order(z[,4],z[,1],na.last=NA),]
         y <- ordered[,c(1,4)]
         a <- y[1,1]
       }
       if (outcome == "pneumonia"){
         z <- x[[i]]
         data.frame(z)
-        ordered <- z[order(z[,5],z[,1]),]
+        z <- z[complete.cases(z),]
+        ordered <- z[order(z[,5],z[,1],na.last=NA),]
         y <- ordered[,c(1,5)]
         a <- y[1,1]
       }
@@ -40,21 +42,25 @@ rankall <- function(outcome, num){
       if (outcome == "heart attack"){ 
         z <- x[[i]]
         data.frame(z)  
-        ordered <- z[order(z[,3],z[,1]),]
+        z <- z[complete.cases(z),]
+        ordered <- z[order(z[,3],z[,1],na.last=NA),]
+        y <- ordered[,c(1,5)]
         y <- ordered[,c(1,3)]
         a <- y[nrow(y),1]
       }
       if (outcome == "heart failure"){ 
         z <- x[[i]]
         data.frame(z)  
-        ordered <- z[order(z[,4],z[,1]),]
+        z <- z[complete.cases(z),]
+        ordered <- z[order(z[,4],z[,1],na.last=NA),]
+        y <- ordered[,c(1,5)]
         y <- ordered[,c(1,4)]
         a <- y[nrow(y),1]
       }
       if (outcome == "pneumonia"){ 
         z <- x[[i]]
         data.frame(z)  
-        ordered <- z[order(z[,5],z[,1]),]
+        ordered <- z[order(z[,5],z[,1],na.last=NA),]
         y <- ordered[,c(1,5)]
         a <- y[nrow(y),1]
       }
@@ -63,21 +69,24 @@ rankall <- function(outcome, num){
       if (outcome == "heart attack"){ 
         z <- x[[i]]
         data.frame(z)   
-        ordered <- z[order(z[,3],z[,1]),]
+        z <- z[complete.cases(z),]
+        ordered <- z[order(z[,3],z[,1],na.last=NA),]
         y <- ordered[,c(1,3)]
         a <- y[num,1]
       }
       if (outcome == "heart failure"){
         z <- x[[i]]
         data.frame(z)   
-        ordered <- z[order(z[,3],z[,1]),]
+        z <- z[complete.cases(z),]
+        ordered <- z[order(z[,3],z[,1],na.last=NA),]
         y <- ordered[,c(1,4)]
         a <- y[num,1]
       }
       if (outcome == "pneumonia"){
         z <- x[[i]]
         data.frame(z)   
-        ordered <- z[order(z[,3],z[,1]),]
+        z <- z[complete.cases(z),]
+        ordered <- z[order(z[,3],z[,1],na.last=NA),]
         y <- ordered[,c(1,5)]
         a <- y[num,1]
       }
@@ -86,5 +95,5 @@ rankall <- function(outcome, num){
   }
   final <- cbind(hospital,state)
   final_table <- data.frame(final)
-  print(final_table)
+  return(final_table)
 }
