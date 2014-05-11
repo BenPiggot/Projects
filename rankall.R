@@ -16,7 +16,6 @@ rankall <- function(outcome, num){
       if (outcome == "heart attack"){
         z <- x[[i]]
         data.frame(z)
-        z <- z[complete.cases(z),]
         ordered <- z[order(z[,3],z[,1],na.last=NA),]
         y <- ordered[,c(1,3)]
         a <- y[1,1]
@@ -24,7 +23,6 @@ rankall <- function(outcome, num){
       if (outcome == "heart failure"){
         z <- x[[i]]
         data.frame(z)
-        z <- z[complete.cases(z),]
         ordered <- z[order(z[,4],z[,1],na.last=NA),]
         y <- ordered[,c(1,4)]
         a <- y[1,1]
@@ -32,7 +30,6 @@ rankall <- function(outcome, num){
       if (outcome == "pneumonia"){
         z <- x[[i]]
         data.frame(z)
-        z <- z[complete.cases(z),]
         ordered <- z[order(z[,5],z[,1],na.last=NA),]
         y <- ordered[,c(1,5)]
         a <- y[1,1]
@@ -42,18 +39,14 @@ rankall <- function(outcome, num){
       if (outcome == "heart attack"){ 
         z <- x[[i]]
         data.frame(z)  
-        z <- z[complete.cases(z),]
         ordered <- z[order(z[,3],z[,1],na.last=NA),]
-        y <- ordered[,c(1,5)]
         y <- ordered[,c(1,3)]
         a <- y[nrow(y),1]
       }
       if (outcome == "heart failure"){ 
         z <- x[[i]]
         data.frame(z)  
-        z <- z[complete.cases(z),]
         ordered <- z[order(z[,4],z[,1],na.last=NA),]
-        y <- ordered[,c(1,5)]
         y <- ordered[,c(1,4)]
         a <- y[nrow(y),1]
       }
@@ -69,7 +62,6 @@ rankall <- function(outcome, num){
       if (outcome == "heart attack"){ 
         z <- x[[i]]
         data.frame(z)   
-        z <- z[complete.cases(z),]
         ordered <- z[order(z[,3],z[,1],na.last=NA),]
         y <- ordered[,c(1,3)]
         a <- y[num,1]
@@ -77,7 +69,6 @@ rankall <- function(outcome, num){
       if (outcome == "heart failure"){
         z <- x[[i]]
         data.frame(z)   
-        z <- z[complete.cases(z),]
         ordered <- z[order(z[,3],z[,1],na.last=NA),]
         y <- ordered[,c(1,4)]
         a <- y[num,1]
@@ -85,7 +76,6 @@ rankall <- function(outcome, num){
       if (outcome == "pneumonia"){
         z <- x[[i]]
         data.frame(z)   
-        z <- z[complete.cases(z),]
         ordered <- z[order(z[,3],z[,1],na.last=NA),]
         y <- ordered[,c(1,5)]
         a <- y[num,1]
