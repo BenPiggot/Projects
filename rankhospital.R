@@ -26,7 +26,7 @@ rankhospital <- function(state, outcome, num = "best"){
 	 x <- ordered[1,1]
 }
 }
-  if (num == "worst"){
+  else if (num == "worst"){
      if (outcome == "heart attack"){    
 	 ordered <- state_rank[order(state_rank[,3],state_rank[,1]),]
 	 x <- ordered[nrow(ordered),1]
