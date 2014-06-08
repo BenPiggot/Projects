@@ -25,12 +25,3 @@ best <- function(state, outcome){
 }
 return(x)
 }
-
-
-
-head(hospital_data)
-
-best("MD", "pneumonia")
-
-
-states
