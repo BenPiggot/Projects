@@ -56,3 +56,5 @@ rankhospital <- function(state, outcome, num = "best"){
 }
 return(x)
 }
+
+
