@@ -50,6 +50,7 @@ p <- p + geom_polygon(data=dtplot, aes(x=long, y=lat, group = group, fill = Emis
   coord_map() +
   labs(fill = "Emissions in Kilo Ton ", title = "Emissions of " ~ PM[2.5] ~ "across US - 2008") +
   xlab("Longitude") +
-  ylab("Latitude")
+  ylab("Latitude") +
+  theme(plot.title = element_text(size = rel(2)))
 print(p)
 dev.off()
