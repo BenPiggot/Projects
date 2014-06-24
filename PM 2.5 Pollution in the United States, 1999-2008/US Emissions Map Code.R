@@ -6,18 +6,14 @@ library(maps)
 library(ggplot2)
 library(data.table)
 
-## Set working directory and read in the NEI and SCC data sets.
+## Set working directory and load data
 setwd("~/Desktop/exdata-data-NEI_data")
-SCC <- readRDS("Source_Classification_Code.rds")
-NEI <- readRDS("summarySCC_PM25.rds")
-
-# Load Data
 NEI <- as.data.table(readRDS("summarySCC_PM25.rds"))
 
 # Subset for year 2008
 NEI2008 <- NEI[NEI$year == "2008", ]
 
-# sum per fips per year and prepare data frame with fips, years, emissions
+# Sum per fips per year and prepare data frame with fips, years, emissions
 dt <- NEI2008[,sum(Emissions), by = list(fips, year)]
 setnames(dt, c("fips", "year", "Emissions"))
 dt$Emissions <- round(dt$Emissions / 1000, digits = 2)
@@ -25,7 +21,7 @@ dt$fips <- as.integer(as.character(dt$fips))
 dt$year <- as.integer(as.character(dt$year))
 dt <- na.omit(dt)
 
-# get fips to county data and create data table with
+# Get fips to county data and create data table with
 # with region (state) and sub region (county)
 setkey(dt, fips)
 data(county.fips)

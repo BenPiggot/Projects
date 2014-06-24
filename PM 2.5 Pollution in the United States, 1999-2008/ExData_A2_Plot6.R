@@ -69,28 +69,3 @@ legend("topright", legend = c("Los Angeles", "Baltimore"),
 abline(h=0, col="red")
 dev.off()
 
-
-
-
-
-
-
-LAAutoEmissions <- LA[which(LA$type == "ON-ROAD"),]
-
-LAA99 <- LAAutoEmissions[which(LAAutoEmissions$year == 1999),]
-LAAsum99 <- sum(LAA99$Emissions)
-
-LAA02 <- LAAutoEmissions[which(LAAutoEmissions$year == 2002),]
-LAAsum02 <- sum(LAA02$Emissions)
-
-LAA05 <- LAAutoEmissions[which(LAAutoEmissions$year == 2005),]
-LAAsum05 <- sum(LAA05$Emissions)
-
-LAA08 <- LAAutoEmissions[which(LAAutoEmissions$year == 2008),]
-LAAsum08 <- sum(LAA08$Emissions)
-
-LAAutos <- c(LAAsum99, LAAsum02, LAAsum05, LAAsum08)
-Year <- c(1999, 2002, 2005, 2008)
-
-plot(Year, LAAutos)
-lines(Year, LAAutos)
