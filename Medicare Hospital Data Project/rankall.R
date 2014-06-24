@@ -1,4 +1,5 @@
 rankall <- function(outcome, num){
+  setwd("~/Desktop/Medicare_Hospital_Data")
   my_data <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
   hospital_data <- my_data[,c(2,7,11,17,23)]
   hospital_data[hospital_data=="Not Available"]  <- NA
